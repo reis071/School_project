@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alunosCadastrados</title>
+</head>
+<body>
+   <header>
+        <h1>
+            <a href="{%url 'index'%}">Elite Schoool</a>
+        </h1>
+   </header>
+   <main>
+        {%block content%}
+            {% if form.errors %}
+                <p>Seu login ou senha estão incorretos.Tente Novamente!</p>
+            {% endif %}
+        <form action= "{% url 'login'%}" method="post">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button type="submit">Entrar</button>
+        </form>
+        {%endblock content%}
+   </main>
+</body>
+</html>

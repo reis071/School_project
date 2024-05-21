@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Curso</title>
+</head>
+<body>
+   <header>
+        <h1>
+            <a href="{%url 'index'%}">Elite Schoool</a>
+        </h1>
+   </header>
+   <main>
+        {%block content%}
+        <h3>{{aluno.primeiroNome}} {{aluno.sobrenome}}</h3>
+
+        <form action = "{%url 'editarCurso' idCurso=cursos.id %}"  method = "post">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button type="submit">Cadastrar</button>
+        </form>
+        {%endblock content%}
+   </main>
+</body>
+</html>

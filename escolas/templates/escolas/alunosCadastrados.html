@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alunosCadastrados</title>
+</head>
+<body>
+   <header>
+        <h1>
+            <a href="{%url 'index'%}">Elite Schoool</a>
+        </h1>
+   </header>
+   <main>
+    <p>
+        <a href="{%url 'cadastrarAluno' %}">Cadastrar Aluno</a>
+    </p>
+        {%block content%}
+        <table border="1">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>cpf</th>
+                <th>email</th>
+                <th>telefone</th>
+                <th>Primeiro Nome</th>
+                <th>Sobrenome</th>
+            </tr>
+                <thead>
+            <tbody>
+                {% for aluno in alunos%}
+                    <tr>
+                        <td><a href="{% url 'curso' idAluno=aluno.id %}">{{aluno.id}}</a></td>
+                        <td>{{aluno.cpf}}</td>
+                        <td>{{aluno.email}}</td>
+                        <td>{{aluno.telefone}}</td>
+                        <td>{{aluno.primeiroNome}}</td>
+                        <td>{{aluno.sobrenome}}</td>
+                    </tr>
+                </tbody>
+                {% empty %}
+                <tr>
+                    <td colspan="6">Não há alunos registrados</td>
+                </tr>
+                {%endfor%}
+        </table>
+        {%endblock content%}
+   </main>
+</body>
+</html>

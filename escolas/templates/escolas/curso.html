@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+</head>
+<body>
+   <header>
+        <h1>
+            <a href="{%url 'index'%}">Elite Schoool</a>
+        </h1>
+   </header>
+   <main>
+        {%block content%}
+        <h3>{{aluno.primeiroNome}} {{aluno.sobrenome}}</h3>
+        <p>
+            <a href="{% url 'cadastrarCurso' idAluno=aluno.id %}">Cadastrar Curso</a>
+        </p>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>id=</th>
+                    <th>nomeCurso</th>
+                    <th>valor</th>
+                    <th>parcelas</th>
+                    <th>Data Inicio</th>
+                    <th>Data Fim</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in cursos %}
+                <tr>
+                    <td><a href="{%url 'editarCurso' idCurso=curso.id%}">{{ curso.id }}</a></td>
+                    <td>{{ curso.nomeCurso }}</td>
+                    <td>{{ curso.valor }}</td>
+                    <td>{{ curso.parcelas }}</td>
+                    <td>{{ curso.dataInicioCurso |date:"d/m/Y" }}</td>
+                    <td>{{ curso.dataFimCurso |date:"d/m/Y"  }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">Não há cursos registrados</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {%endblock content%}
+   </main>
+</body>
+</html>

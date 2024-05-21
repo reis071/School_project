@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite school</title>
+</head>
+<body>
+    <header>
+        <h1>Elite School</h1>
+            {% if user.is_authenticated %}
+            Seja bem Vindo! {{user.username}}
+            {%else%}
+            <p><a href="{% url 'login'%}">Entrar</a></p>
+            {%endif%}
+    </header>
+   <main>
+        <br>
+        <p>
+            <a href = "{%url 'alunosCadastrados'%}">Alunos Cadastrados</a>
+        </p>
+   </main>
+</body>
+</html>
