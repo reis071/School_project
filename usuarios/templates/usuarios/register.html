@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>alunosCadastrados</title>
+    <title>alunos Cadastrados</title>
 </head>
 <body>
    <header>
@@ -13,14 +13,12 @@
    </header>
    <main>
         {%block content%}
-            {% if form.errors %}
-                <p>Seu login ou senha estão incorretos.Tente Novamente!</p>
-            {% endif %}
-        <form action= "{% url 'login'%}" method="post">
+            
+        <form action= "{% url 'register'%}" method="post">
             {%csrf_token%}
             {{form.as_p}}
-            <button type="submit">Entrar</button>
-            <input type = "hidden" name ="next" value="{% url 'index'%}"/>
+            <button type="submit">Cadastrar</button>
+            <input type = "hidden" name ="next" value="{& url 'index'&}"/>
         </form>
         {%endblock content%}
    </main>

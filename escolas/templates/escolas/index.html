@@ -10,7 +10,9 @@
         <h1>Elite School</h1>
             {% if user.is_authenticated %}
             Seja bem Vindo! {{user.username}}
+            <p><a href="{% url 'logout'%}">Sair</a></p>
             {%else%}
+            <p><a href="{% url 'register'%}">Cadastrar</a></p>
             <p><a href="{% url 'login'%}">Entrar</a></p>
             {%endif%}
     </header>
