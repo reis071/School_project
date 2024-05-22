@@ -73,4 +73,3 @@ def editarCurso(requests,idCurso):
     contexto = {'cursos':cursos,'aluno':aluno,'form':form}
     
     return render(requests,'escolas/editarCurso.html',contexto)
-#
