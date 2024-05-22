@@ -1,4 +1,4 @@
-//Workflow para validação de pull request
+#PR validation
 name: PR Lint
 
 on:
