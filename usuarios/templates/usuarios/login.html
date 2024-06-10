@@ -3,26 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>alunosCadastrados</title>
+    <title>Login - Elite School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-   <header>
-        <h1>
-            <a href="{%url 'index'%}">Elite Schoool</a>
-        </h1>
+   <header class="bg-dark text-white py-4">
+        <div class="container">
+            <h1 class="m-0">
+                <a href="{% url 'index' %}" class="text-decoration-none text-white">Elite School</a>
+            </h1>
+        </div>
    </header>
-   <main>
-        {%block content%}
-            {% if form.errors %}
-                <p>Seu login ou senha estão incorretos.Tente Novamente!</p>
-            {% endif %}
-        <form action= "{% url 'login'%}" method="post">
-            {%csrf_token%}
-            {{form.as_p}}
-            <button type="submit">Entrar</button>
-            <input type = "hidden" name ="next" value="{% url 'index'%}"/>
-        </form>
-        {%endblock content%}
+   <main class="py-5">
+        <div class="container">
+            {% block content %}
+                {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        Seu login ou senha estão incorretos. Tente Novamente!
+                    </div>
+                {% endif %}
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <input type="hidden" name="next" value="{% url 'index' %}">
+                </form>
+            {% endblock %}
+        </div>
    </main>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

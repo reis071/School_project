@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from .form import FormAluno,FormCurso
 from .models import Aluno,Curso
 from django.http import HttpResponseRedirect
@@ -39,6 +39,26 @@ def cadastrarAluno(requests):
     return render(requests,'escolas/cadastrarAluno.html',contexto)
 
 @login_required
+def editarAluno(request, aluno_id):
+    aluno = get_object_or_404(Aluno, pk=aluno_id)
+    if request.method == 'POST':
+        form = FormAluno(request.POST, instance=aluno)
+        if form.is_valid():
+            form.save()
+            return redirect('alunosCadastrados')
+    else:
+        form = FormAluno(instance=aluno)
+    return render(request, 'escolas/editarAluno.html', {'form': form, 'aluno': aluno})
+
+@login_required
+def deletarAluno(request, aluno_id):
+    aluno = get_object_or_404(Aluno, pk=aluno_id)
+    if request.method == 'POST':
+        aluno.delete()
+        return redirect('alunosCadastrados')
+    return render(request, 'escolas/deletarAluno.html', {'aluno': aluno})
+
+@login_required
 def cadastrarCurso(requests, idAluno):
     aluno = Aluno.objects.get(id=idAluno)
     
@@ -56,6 +76,17 @@ def cadastrarCurso(requests, idAluno):
     contexto = {'aluno':aluno, 'form':form}
     
     return render(requests,'escolas/cadastrarCurso.html',contexto)
+
+@login_required
+def deletarCurso(request, idCurso):
+    curso = get_object_or_404(Curso, id=idCurso)
+    aluno_id = curso.aluno.id
+    
+    if request.method == 'POST':
+        curso.delete()
+        return redirect('curso', idAluno=aluno_id)
+    
+    return render(request, 'escolas/deletarCurso.html', {'curso': curso})
 
 @login_required
 def editarCurso(requests,idCurso):
