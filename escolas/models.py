@@ -16,5 +16,5 @@ class Curso(models.Model):
     parcelas = models.IntegerField() 
     dataInicioCurso = models.DateField(default=timezone.now)
     dataFimCurso = models.DateField(default=timezone.now)
-    professor = models.CharField(max_length=80)
+    #professor = models.CharField(max_length=80)
     
