@@ -22,8 +22,11 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('alunosCadastrados', views.alunosCadastrados, name='alunosCadastrados'),
-    path('curso/<idAluno>/', views.curso, name='curso'),
     path('cadastrarAluno', views.cadastrarAluno, name='cadastrarAluno'),
+    path('deletarAluno/<int:aluno_id>/', views.deletarAluno, name='deletarAluno'),
+    path('editarAluno/<int:aluno_id>/', views.editarAluno, name='editarAluno'),
+    path('curso/<idAluno>/', views.curso, name='curso'),
     path('cadastrarCurso/<idAluno>', views.cadastrarCurso, name='cadastrarCurso'),
     path('editarCurso/<idCurso>', views.editarCurso, name='editarCurso'),
+    path('deletarCurso/<int:idCurso>/', views.deletarCurso, name='deletarCurso'),
 ]

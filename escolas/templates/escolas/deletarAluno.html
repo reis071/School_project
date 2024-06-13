@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Exclusão</title>
+</head>
+<body>
+    <h1>Confirmar Exclusão de Aluno</h1>
+    <p>Tem certeza que deseja excluir o aluno {{ aluno.nome }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirmar Exclusão">
+    </form>
+    <p><a href="{% url 'alunosCadastrados' %}">Cancelar e voltar para lista de alunos</a></p>
+</body>
+</html>

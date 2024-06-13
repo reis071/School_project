@@ -3,48 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>alunosCadastrados</title>
+    <title>Alunos Cadastrados</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Optional Bootstrap theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-theme.min.css">
 </head>
 <body>
-   <header>
-        <h1>
-            <a href="{%url 'index'%}">Elite Schoool</a>
-        </h1>
+   <header class="bg-dark text-white py-4">
+        <div class="container">
+            <h1 class="mb-0">
+                <a href="{% url 'index' %}" class="text-white">Elite School</a>
+            </h1>
+        </div>
    </header>
-   <main>
-    <p>
-        <a href="{%url 'cadastrarAluno' %}">Cadastrar Aluno</a>
-    </p>
-        {%block content%}
-        <table border="1">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>cpf</th>
-                <th>email</th>
-                <th>telefone</th>
-                <th>Primeiro Nome</th>
-                <th>Sobrenome</th>
-            </tr>
-                <thead>
+   <main class="container py-4">
+    <div class="mb-4">
+        <a href="{% url 'cadastrarAluno' %}" class="btn btn-primary">Cadastrar Aluno</a>
+    </div>
+        {% block content %}
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>CPF</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Primeiro Nome</th>
+                    <th>Sobrenome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
             <tbody>
-                {% for aluno in alunos%}
+                {% for aluno in alunos %}
                     <tr>
-                        <td><a href="{% url 'curso' idAluno=aluno.id %}">{{aluno.id}}</a></td>
-                        <td>{{aluno.cpf}}</td>
-                        <td>{{aluno.email}}</td>
-                        <td>{{aluno.telefone}}</td>
-                        <td>{{aluno.primeiroNome}}</td>
-                        <td>{{aluno.sobrenome}}</td>
+                        <td><a href="{% url 'curso' idAluno=aluno.id %}">{{ aluno.id }}</a></td>
+                        <td>{{ aluno.cpf }}</td>
+                        <td>{{ aluno.email }}</td>
+                        <td>{{ aluno.telefone }}</td>
+                        <td>{{ aluno.primeiroNome }}</td>
+                        <td>{{ aluno.sobrenome }}</td>
+                        <td>
+                            <a href="{% url 'editarAluno' aluno.id %}" class="btn btn-sm btn-primary">Editar</a>
+                            <!-- Adicionando link para editar aluno -->
+                            <a href="{% url 'deletarAluno' aluno.id %}" class="btn btn-sm btn-danger">Deletar</a>
+                            <!-- Adicionando link para deletar aluno -->
+                        </td>
                     </tr>
-                </tbody>
                 {% empty %}
                 <tr>
-                    <td colspan="6">Não há alunos registrados</td>
+                    <td colspan="7" class="text-center">Não há alunos registrados</td>
                 </tr>
-                {%endfor%}
+                {% endfor %}
+            </tbody>
         </table>
-        {%endblock content%}
+        {% endblock content %}
    </main>
 </body>
 </html>
